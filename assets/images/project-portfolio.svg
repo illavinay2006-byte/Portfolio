@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d" />
+      <stop offset="100%" stop-color="#141c2e" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgGrad3)" />
+
+  <!-- Window Container -->
+  <rect x="40" y="40" width="720" height="420" rx="12" fill="#0b0f19" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Window Header -->
+  <rect x="40" y="40" width="720" height="44" rx="12" fill="#1e293b" />
+  <circle cx="68" cy="62" r="6" fill="#ef4444" />
+  <circle cx="88" cy="62" r="6" fill="#f59e0b" />
+  <circle cx="108" cy="62" r="6" fill="#10b981" />
+  <rect x="180" y="50" width="440" height="24" rx="6" fill="#0f172a" />
+  <text x="400" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">https://illavinaykumar.dev</text>
+
+  <!-- Hero Simulation in window -->
+  <rect x="70" y="105" width="200" height="24" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1" />
+  <circle cx="84" cy="117" r="4" fill="#38bdf8" />
+  <text x="100" y="121" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-weight="600" font-size="11" fill="#38bdf8">ASPIRING FULL STACK DEV</text>
+
+  <text x="70" y="165" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-weight="800" font-size="28" fill="#ffffff">Illa Vinay Kumar</text>
+  <text x="70" y="195" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="13" fill="#94a3b8">B.Tech 3rd Year CSE | St. Ann's College of Engineering &amp; Technology</text>
+
+  <!-- Buttons -->
+  <rect x="70" y="220" width="130" height="36" rx="8" fill="url(#glowGrad)" />
+  <text x="135" y="243" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-weight="600" font-size="12" fill="#ffffff" text-anchor="middle">Explore Work</text>
+
+  <rect x="215" y="220" width="130" height="36" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+  <text x="280" y="243" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-weight="600" font-size="12" fill="#e2e8f0" text-anchor="middle">Resume (PDF)</text>
+
+  <!-- Featured Mock Cards -->
+  <rect x="70" y="280" width="200" height="150" rx="8" fill="#111827" stroke="#334155" stroke-width="1" />
+  <rect x="85" y="295" width="40" height="40" rx="6" fill="#0369a1" />
+  <text x="105" y="320" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-weight="800" font-size="16" fill="#bae6fd" text-anchor="middle">&lt;/&gt;</text>
+  <text x="85" y="355" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-weight="700" font-size="13" fill="#f8fafc">Interactive UI</text>
+  <text x="85" y="375" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11" fill="#94a3b8">Vanilla JS &amp; Modern CSS</text>
+
+  <rect x="290" y="280" width="200" height="150" rx="8" fill="#111827" stroke="#334155" stroke-width="1" />
+  <rect x="305" y="295" width="40" height="40" rx="6" fill="#4338ca" />
+  <text x="325" y="320" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-weight="800" font-size="16" fill="#c7d2fe" text-anchor="middle">{ }</text>
+  <text x="305" y="355" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-weight="700" font-size="13" fill="#f8fafc">Recruiter Focused</text>
+  <text x="305" y="375" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11" fill="#94a3b8">Clean, Verified Credentials</text>
+
+  <rect x="510" y="280" width="220" height="150" rx="8" fill="#111827" stroke="#334155" stroke-width="1" />
+  <rect x="525" y="295" width="40" height="40" rx="6" fill="#065f46" />
+  <text x="545" y="320" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-weight="800" font-size="16" fill="#a7f3d0" text-anchor="middle">⚡</text>
+  <text x="525" y="355" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-weight="700" font-size="13" fill="#f8fafc">Performance &amp; A11y</text>
+  <text x="525" y="375" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="11" fill="#94a3b8">100% Responsive &amp; Fast</text>
+</svg>

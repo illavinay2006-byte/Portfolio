@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | Illa Vinay Kumar Portfolio</title>
+  <meta name="description" content="The requested page could not be located.">
+  <meta name="theme-color" content="#2563eb">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    // GitHub Pages Clean URL Redirect Engine
+    // If a user or recruiter visits /projects or /about without .html, automatically route to the corresponding page
+    (function() {
+      var path = window.location.pathname;
+      var cleanRoute = path.replace(/\/$/, '').split('/').pop();
+      var knownRoutes = ['about', 'skills', 'projects', 'certificates', 'journey', 'resume', 'contact', 'admin'];
+      if (knownRoutes.indexOf(cleanRoute) !== -1) {
+        var newPath = path.replace(new RegExp(cleanRoute + '\/?$'), cleanRoute + '.html') + window.location.search + window.location.hash;
+        window.location.replace(newPath);
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="Illa Vinay Kumar Home">
+        <div class="brand-monogram">IVK</div>
+        <div class="brand-text">
+          <span class="brand-name">Illa Vinay Kumar</span>
+          <span class="brand-status">
+            <span class="status-dot"></span>
+            Full Stack Developer
+          </span>
+        </div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="certificates.html" class="nav-link">Certificates</a></li>
+          <li><a href="journey.html" class="nav-link">Journey</a></li>
+          <li><a href="resume.html" class="nav-link">Resume</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <a href="contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="min-height: 65vh; display: flex; align-items: center; justify-content: center; padding: 60px 0;">
+    <div class="container" style="text-align: center; max-width: 620px;">
+      <div class="empty-state-icon" style="margin: 0 auto 20px auto;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+      </div>
+      <span class="page-tag" style="margin-bottom: 12px;">HTTP 404</span>
+      <h1 class="page-title" style="font-size: 2.2rem; margin-bottom: 12px;">Page Not Found</h1>
+      <p class="page-subtitle" style="margin-bottom: 28px;">
+        The requested URL was not found on this portfolio. It may have been relocated, or the URL address might contain a typo.
+      </p>
+      <div class="btn-group" style="justify-content: center;">
+        <a href="index.html" class="btn btn-primary">Return to Home</a>
+        <a href="projects.html" class="btn btn-secondary">Explore Projects</a>
+        <a href="contact.html" class="btn btn-outline">Contact Vinay</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="brand-logo">
+          <div class="brand-monogram">IVK</div>
+          <div class="brand-text">
+            <span class="brand-name">Illa Vinay Kumar</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">B.Tech 3rd Year CSE • St. Ann's College, Chirala</span>
+          </div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="certificates.html">Certificates</a></li>
+          <li><a href="journey.html">Journey</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; <span id="currentYear">2026</span> Illa Vinay Kumar. Calm, professional developer portfolio.</div>
+        <div>Built with pure HTML5, CSS3, and Vanilla JavaScript.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/portfolio-data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

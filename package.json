@@ -1,0 +1,23 @@
+{
+  "name": "illa-vinay-kumar-portfolio",
+  "version": "1.0.0",
+  "description": "Professional Personal Portfolio for Illa Vinay Kumar - B.Tech 3rd Year CSE Student & Full Stack Developer",
+  "homepage": "https://illavinay2006-byte.github.io/portfolio",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve .",
+    "build": "echo 'Static HTML/CSS/JS portfolio - ready for deployment'"
+  },
+  "keywords": [
+    "portfolio",
+    "developer-portfolio",
+    "full-stack",
+    "python",
+    "flask",
+    "javascript",
+    "btech-cse",
+    "github-pages"
+  ],
+  "author": "Illa Vinay Kumar <illavinay2006@gmail.com>",
+  "license": "MIT"
+}

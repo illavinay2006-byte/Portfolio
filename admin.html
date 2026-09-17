@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal | Illa Vinay Kumar Portfolio</title>
+  <meta name="description" content="Admin management dashboard for managing projects, certificates, and portfolio content.">
+  <meta name="theme-color" content="#2563eb">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="Illa Vinay Kumar Home">
+        <div class="brand-monogram">IVK</div>
+        <div class="brand-text">
+          <span class="brand-name">Illa Vinay Kumar</span>
+          <span class="brand-status">
+            <span class="status-dot"></span>
+            Admin Portal
+          </span>
+        </div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="certificates.html" class="nav-link">Certificates</a></li>
+          <li><a href="journey.html" class="nav-link">Journey</a></li>
+          <li><a href="resume.html" class="nav-link">Resume</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" aria-label="Toggle theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button id="adminLogoutBtn" class="btn btn-outline btn-sm">Lock Admin</button>
+        <a href="index.html" class="btn btn-primary btn-sm">Exit to Website ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================================================
+         PIN AUTHENTICATION MODAL OVERLAY
+         ========================================================================= -->
+    <div id="adminPinModal" style="display:flex; position:fixed; inset:0; background:rgba(15,23,42,0.7); backdrop-filter:blur(8px); z-index:3000; align-items:center; justify-content:center; padding:24px;">
+      <div class="card" style="width:100%; max-width:420px; padding:36px; text-align:center;">
+        <div class="brand-monogram" style="margin:0 auto 16px auto;">IVK</div>
+        <h2 style="font-size:1.45rem; font-weight:800; color:var(--text-primary); margin-bottom:8px;">Admin Portal Access</h2>
+        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.5; margin-bottom:24px;">
+          This portal allows you to add future projects and certificates without editing source files directly.
+        </p>
+
+        <form id="pinForm">
+          <div class="form-group" style="text-align:left;">
+            <label for="adminPinInput" class="form-label">Developer Passcode / PIN</label>
+            <input type="password" id="adminPinInput" class="form-control" placeholder="Enter PIN (Default: vinay2026)" required autofocus>
+            <span id="adminPinError" style="font-size:0.8rem; color:#ef4444; display:none; margin-top:6px;">Incorrect PIN. Please enter the default PIN (vinay2026).</span>
+          </div>
+          <div class="btn-group" style="margin-top:20px;">
+            <button type="submit" id="adminPinSubmitBtn" class="btn btn-primary" style="width:100%;">Authenticate &amp; Open Portal</button>
+          </div>
+        </form>
+
+        <div style="margin-top:20px; font-size:0.78rem; color:var(--text-muted); background:var(--bg-subtle); padding:10px; border-radius:6px; border:1px dashed var(--border-subtle);">
+          Default Passcode: <strong>vinay2026</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         MAIN ADMIN DASHBOARD
+         ========================================================================= -->
+    <div id="adminMainDashboard" style="display:none;">
+      <div class="container">
+        <div class="page-header" style="padding-bottom:24px;">
+          <span class="page-tag">Content Management</span>
+          <h1 class="page-title">Developer Admin Dashboard</h1>
+          <p class="page-subtitle">Add new projects and certificates. Changes persist in your browser and can be exported into <code>portfolio-data.js</code> anytime.</p>
+        </div>
+
+        <!-- Dashboard Tab Bar -->
+        <div class="admin-tabs-bar" role="tablist" aria-label="Admin Navigation Tabs">
+          <button type="button" class="admin-tab-btn active" data-tab="tabProject" role="tab" aria-selected="true">Add Project</button>
+          <button type="button" class="admin-tab-btn" data-tab="tabCert" role="tab" aria-selected="false">Add Certificate</button>
+          <button type="button" class="admin-tab-btn" data-tab="tabProfile" role="tab" aria-selected="false">Profile &amp; Socials</button>
+          <button type="button" class="admin-tab-btn" data-tab="tabManage" role="tab" aria-selected="false">Manage Active Entries</button>
+          <button type="button" class="admin-tab-btn" data-tab="tabExport" role="tab" aria-selected="false">Export Code to File</button>
+        </div>
+
+        <!-- =====================================================================
+             TAB 1: ADD NEW PROJECT
+             ===================================================================== -->
+        <div class="admin-tab-pane active" id="tabProject">
+          <div class="card admin-form-wrap">
+            <h2 style="font-size:1.35rem; font-weight:700; color:var(--text-primary); margin-bottom:20px;">Register New Project</h2>
+            
+            <form id="addProjectForm">
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="projTitle" class="form-label">Project Title *</label>
+                  <input type="text" id="projTitle" class="form-control" placeholder="e.g. AI-Powered Campus Assistant" required>
+                </div>
+                <div class="form-group">
+                  <label for="projCategory" class="form-label">Category *</label>
+                  <select id="projCategory" class="form-control" required>
+                    <option value="fullstack">Full Stack</option>
+                    <option value="backend">Backend</option>
+                    <option value="frontend">Frontend</option>
+                    <option value="academic">Academic</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="projProblem" class="form-label">Problem Solved *</label>
+                <input type="text" id="projProblem" class="form-control" placeholder="e.g. Automates student scheduling conflicts across departments" required>
+              </div>
+
+              <div class="form-group">
+                <label for="projDesc" class="form-label">Short Description *</label>
+                <textarea id="projDesc" class="form-control" rows="3" placeholder="Brief technical summary of the application architecture and purpose..." required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="projTech" class="form-label">Technologies (Comma-separated) *</label>
+                <input type="text" id="projTech" class="form-control" placeholder="e.g. Python, Flask, SQLite, Bootstrap, JavaScript" required>
+              </div>
+
+              <div class="form-group">
+                <label for="projFeatures" class="form-label">Architectural Features (One per line) *</label>
+                <textarea id="projFeatures" class="form-control" rows="3" placeholder="Feature 1: Role-based JWT authentication&#10;Feature 2: Real-time conflict detection&#10;Feature 3: Export to CSV and PDF" required></textarea>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="projGithub" class="form-label">GitHub Repository URL</label>
+                  <input type="url" id="projGithub" class="form-control" placeholder="https://github.com/username/project">
+                </div>
+                <div class="form-group">
+                  <label for="projDemo" class="form-label">Live Demo / Deployed URL</label>
+                  <input type="url" id="projDemo" class="form-control" placeholder="https://my-app.vercel.app">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="projImage" class="form-label">Card Banner Image</label>
+                <select id="projImage" class="form-control">
+                  <option value="assets/images/project-campus-portal.svg">Full Stack / Web Visual (SVG)</option>
+                  <option value="assets/images/project-rest-api.svg">REST API Terminal Visual (SVG)</option>
+                  <option value="assets/images/project-portfolio.svg">Portfolio Web Visual (SVG)</option>
+                  <option value="assets/images/project-academic-tracker.svg">Academic Software Visual (SVG)</option>
+                </select>
+              </div>
+
+              <div class="btn-group">
+                <button type="submit" class="btn btn-primary">
+                  <span>Save Project to Portfolio</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </button>
+                <button type="reset" class="btn btn-secondary">Clear Form</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- =====================================================================
+             TAB 2: ADD NEW CERTIFICATE (NAME + LINKEDIN URL + PHOTO)
+             ===================================================================== -->
+        <div class="admin-tab-pane" id="tabCert">
+          <div class="card admin-form-wrap">
+            <h2 style="font-size:1.35rem; font-weight:700; color:var(--text-primary); margin-bottom:8px;">Upload New Certificate</h2>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:24px;">Enter the certificate name, its LinkedIn post verification URL, and upload the certificate photo.</p>
+            
+            <form id="addCertForm">
+              <div class="form-group">
+                <label for="certTitle" class="form-label">Certificate Name *</label>
+                <input type="text" id="certTitle" class="form-control" placeholder="e.g. Full Stack Web Development Certificate" required>
+              </div>
+
+              <div class="form-group">
+                <label for="certLinkedinUrl" class="form-label">LinkedIn Certificate Post URL *</label>
+                <input type="url" id="certLinkedinUrl" class="form-control" placeholder="https://www.linkedin.com/posts/..." required>
+                <small style="color:var(--text-muted); font-size:0.8rem; display:block; margin-top:5px;">
+                  Recruiters and visitors clicking "View on LinkedIn" on your website will be redirected to this LinkedIn post.
+                </small>
+              </div>
+
+              <div class="form-group">
+                <label for="certFileInput" class="form-label">Certificate Photo to Upload *</label>
+                <input type="file" id="certFileInput" accept="image/*" class="form-control" required>
+                <div id="certPreviewWrap" style="display:none; margin-top:16px; max-width:380px; border-radius:10px; overflow:hidden; border:1px solid var(--border-medium); box-shadow:var(--shadow-sm);">
+                  <img id="certPhotoPreview" src="" alt="Certificate Preview" style="width:100%; height:auto; display:block;">
+                </div>
+              </div>
+
+              <div class="btn-group" style="margin-top:28px;">
+                <button type="submit" class="btn btn-primary">
+                  <span>Upload Certificate</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </button>
+                <button type="reset" id="resetCertFormBtn" class="btn btn-secondary">Clear</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- =====================================================================
+             TAB: PROFILE & SOCIAL LINKS SETTINGS
+             ===================================================================== -->
+        <div class="admin-tab-pane" id="tabProfile">
+          <div class="card admin-form-wrap">
+            <h2 style="font-size:1.35rem; font-weight:700; color:var(--text-primary); margin-bottom:8px;">Profile &amp; Contact Links</h2>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:24px;">Configure your real contact channels and social profiles. These will automatically update across your portfolio navigation, hero section, and contact page.</p>
+            
+            <form id="profileSettingsForm">
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="profileEmail" class="form-label">Email Address</label>
+                  <input type="email" id="profileEmail" class="form-control" placeholder="illavinay2006@gmail.com">
+                </div>
+                <div class="form-group">
+                  <label for="profilePhone" class="form-label">Phone Number (Direct Calling)</label>
+                  <input type="text" id="profilePhone" class="form-control" placeholder="+91 6305034309">
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="profileLinkedin" class="form-label">LinkedIn Profile URL</label>
+                  <input type="url" id="profileLinkedin" class="form-control" placeholder="https://www.linkedin.com/in/vinay-kumar-4ab345424/">
+                </div>
+                <div class="form-group">
+                  <label for="profileGithub" class="form-label">GitHub Profile URL</label>
+                  <input type="url" id="profileGithub" class="form-control" placeholder="https://github.com/illavinay2006-byte">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="profileWhatsapp" class="form-label">WhatsApp Number / Link</label>
+                <input type="text" id="profileWhatsapp" class="form-control" placeholder="+91 6305034309 or https://wa.me/916305034309">
+              </div>
+
+              <div class="btn-group" style="margin-top:24px;">
+                <button type="submit" class="btn btn-primary">
+                  <span>Save Profile Details</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- =====================================================================
+             TAB 3: MANAGE ENTRIES
+             ===================================================================== -->
+        <div class="admin-tab-pane" id="tabManage">
+          <div class="card admin-form-wrap">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+              <div>
+                <h2 style="font-size:1.35rem; font-weight:700; color:var(--text-primary); margin-bottom:4px;">Active Portfolio Projects</h2>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin:0;">Includes both built-in templates and your custom additions.</p>
+              </div>
+              <button id="resetAllCustomDataBtn" class="btn btn-outline btn-sm" style="color:#ef4444; border-color:#fca5a5;">Reset Custom Additions</button>
+            </div>
+            
+            <div id="adminProjectsList" style="margin-bottom:36px;"></div>
+
+            <div style="margin-top:36px; padding-top:24px; border-top:1px solid var(--border-subtle);">
+              <h2 style="font-size:1.35rem; font-weight:700; color:var(--text-primary); margin-bottom:4px;">Active Certificates</h2>
+              <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;">List of all credentials currently viewable on the Certificates page.</p>
+              <div id="adminCertsList"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =====================================================================
+             TAB 4: EXPORT CODE
+             ===================================================================== -->
+        <div class="admin-tab-pane" id="tabExport">
+          <div class="card admin-form-wrap">
+            <h2 style="font-size:1.35rem; font-weight:700; color:var(--text-primary); margin-bottom:6px;">Export to Code File</h2>
+            <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.6; margin-bottom:20px;">
+              Whenever you add projects or certificates in this portal, you can click <strong>Copy Code</strong> below and paste the generated code into <code>js/portfolio-data.js</code> to commit your changes permanently to the repository.
+            </p>
+
+            <textarea id="exportCodeBox" class="code-export-box" readonly></textarea>
+
+            <div class="btn-group">
+              <button id="copyExportBtn" class="btn btn-primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Copy Code to Clipboard</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/portfolio-data.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
